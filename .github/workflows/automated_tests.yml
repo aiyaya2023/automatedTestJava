@@ -8,6 +8,8 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
+    container:
+      image: node:16 # Specify Node.js version 16
 
     steps:
       - name: Checkout Business Code
