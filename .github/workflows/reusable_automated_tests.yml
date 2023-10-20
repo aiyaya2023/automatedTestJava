@@ -6,7 +6,7 @@ on:
       - main  # code branch
 
 jobs:
-  build:
+  build-automatedTestCode:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,7 +21,7 @@ jobs:
 
   run-tests:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-automatedTestCode
 
     steps:
       - name: Checkout Business Code
