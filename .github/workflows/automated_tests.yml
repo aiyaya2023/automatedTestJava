@@ -6,8 +6,22 @@ on:
       - main  # code branch
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: echo "This is just a demo process, simulating [build]......"
+          # Add build commands here
+          # Example: npm install
+          # Example: mvn clean install
+        # ...
+
   run-tests:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: Checkout Business Code
@@ -15,8 +29,43 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11' # Set your desired Java version
+
+      - name: Set up Maven
+        run: mvn -N io.takari:maven:wrapper # Set up Maven wrapper
+        working-directory: your-project-directory # Specify the path to your Maven project
+      
       - name: Set Environment Variables
         run: echo "Set Environment Variables-successful!!"
 
       - name: Run Automated Tests
-        run: echo "Hello automated Test!!"
+        #run: echo "Hello automated Test!!"
+        run: |
+          # Compile and run your TestNG tests using Maven
+          cd ./automatedTestJava
+          ./mvnw clean test -DsuiteXmlFile=testng.xml
+        env:
+          MAVEN_OPTS: '-Xmx2048m' # Set appropriate JVM options for your tests
+        working-directory: your-project-directory
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+      - name: Publish Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: test-results
+
+  notification:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+      - name: Send Test Results Notification
+        run: echo "This is just a demo process, simulating [notification]......"
+          # Send notifications to your team, e.g., through Slack or email
+        # ...
