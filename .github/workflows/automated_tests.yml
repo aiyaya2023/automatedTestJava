@@ -8,14 +8,12 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    container:
-      image: node:16 # Specify Node.js version 16
-
     steps:
       - name: Checkout Business Code
         uses: actions/checkout@v2
         with:
           submodules: recursive
+        runs-on: node-16 # Add this line to specify Node.js version 16
 
       - name: Set Environment Variables
         run: echo "Set Environment Variables-successful!!"
