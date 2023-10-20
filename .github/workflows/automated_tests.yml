@@ -32,7 +32,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11' # Set your desired Java version
+          java-version: '16.0.1' # Set your desired Java version
 
       - name: Set up Maven
         run: mvn -N io.takari:maven:wrapper # Set up Maven wrapper
