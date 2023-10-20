@@ -30,26 +30,29 @@ jobs:
           submodules: recursive
 
       - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '16.0.1' # Set your desired Java version
+       # uses: actions/setup-java@v2
+       # with:
+        #  java-version: '16.0.1' # Set your desired Java version
+        run: echo "This is just a demo process, simulating [Set up JDK]......"  
 
       - name: Set up Maven
-        run: mvn -N io.takari:maven:wrapper # Set up Maven wrapper
-        working-directory: your-project-directory # Specify the path to your Maven project
+       # run: mvn -N io.takari:maven:wrapper # Set up Maven wrapper
+       # working-directory: your-project-directory # Specify the path to your Maven project
+        run: echo "This is just a demo process, simulating [Set up Maven]......"  
       
       - name: Set Environment Variables
         run: echo "Set Environment Variables-successful!!"
 
       - name: Run Automated Tests
+        run: echo "This is just a demo process, simulating [Run Automated Tests]......"  
         #run: echo "Hello automated Test!!"
-        run: |
+        #run: |
           # Compile and run your TestNG tests using Maven
-          cd ./automatedTestJava
-          ./mvnw clean test -DsuiteXmlFile=testng.xml
-        env:
-          MAVEN_OPTS: '-Xmx2048m' # Set appropriate JVM options for your tests
-        working-directory: your-project-directory
+        #  cd ./automatedTestJava
+        #  ./mvnw clean test -DsuiteXmlFile=testng.xml
+       # env:
+       #   MAVEN_OPTS: '-Xmx2048m' # Set appropriate JVM options for your tests
+      #  working-directory: your-project-directory
 
   publish:
     runs-on: ubuntu-latest
