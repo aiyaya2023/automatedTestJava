@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Automated Tests for Business Code
+name: Manual trigger - Automated Tests for Business Code
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
