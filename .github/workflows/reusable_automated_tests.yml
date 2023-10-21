@@ -1,9 +1,10 @@
 name: reusable-Automated Tests for Business Code
 
 on:
-  push:
-    branches:
-      - main  # code branch
+  workflow_call:
+  #push:
+  #  branches:
+    #  - main  # code branch
 
 jobs:
   build-automatedTestCode:
